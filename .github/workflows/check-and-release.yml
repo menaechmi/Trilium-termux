@@ -47,7 +47,7 @@ jobs:
           # 此处加入你的自定义替换和修改操作
           rm -rf TriliumNotes-Server-*-linux-arm64/node
           rm -rf TriliumNotes-Server-*-linux-arm64/node_modules/better-sqlite3
-          rename -v TriliumNotes-Server-*-linux-arm64 TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64 TriliumNotes-Server-*-linux-arm64
+          mv TriliumNotes-Server-*-linux-arm64 TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64
           mkdir -p TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/node/
           tar xvf nodejs-v22.19.tar.xz
           cp -r nodejs-v22.19.0/bin/ TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/node/
