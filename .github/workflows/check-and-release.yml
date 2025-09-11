@@ -42,18 +42,17 @@ jobs:
       - name: Download, Process and Repack
         if: steps.check-version.outputs.is_new == 'true'
         run: |
-          wget -O external_latest.zip https://github.com/TriliumNext/Trilium/releases/download/${{ steps.get-external-release.outputs.latest_tag }}/TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-linux-arm64.tar.xz
-          tar xvf TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-linux-arm64.tar.xz -d extracted_external/
+          wget -O external_latest.tar.xz https://github.com/TriliumNext/Trilium/releases/download/${{ steps.get-external-release.outputs.latest_tag }}/TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-linux-arm64.tar.xz
+          tar xvf external_latest.tar.xz
           # 此处加入你的自定义替换和修改操作
-          rm -rf extracted_external/node
-          rm -rf extracted_external/node_modules/better-sqlite3
-          
-          mkdir -p extracted_external/node/
-          cp -r nodejs-v22.19.0/bin/ extracted_external/node/
-          cp -r nodejs-v22.19.0/node_modules/better-sqlite3 extracted_external/node_modules/
-          cd extracted_external
-          tar cJf ../TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64.tar.xz ./*
-          cd ..
+          rm -rf TriliumNotes-Server-*-linux-arm64/node
+          rm -rf TriliumNotes-Server-*-linux-arm64/node_modules/better-sqlite3
+          rename -v TriliumNotes-Server-*-linux-arm64 TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64 TriliumNotes-Server-*-linux-arm64
+          mkdir -p TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/node/
+          tar xvf nodejs-v22.19.tar.xz
+          cp -r nodejs-v22.19.0/bin/ TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/node/
+          cp -r nodejs-v22.19.0/better-sqlite3 TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/node_modules/
+          tar cJf TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64.tar.xz TriliumNotes-Server-${{ steps.get-external-release.outputs.latest_tag }}-termux-arm64/
 
       - name: Publish to Current Repository Release
         if: steps.check-version.outputs.is_new == 'true'
