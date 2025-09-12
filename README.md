@@ -1,9 +1,12 @@
 # Trilium-termux
-Trilium in termux
+[Trilium](https://github.com/TriliumNext/Trilium/releases) in termux
 
-- pkg ins c-ares libic wget
-- wget https://github.com/jasongwq/Trilium-termux/releases/download/v0.98.1/TriliumNotes-Server-v0.98.1-termux-arm64.tar.xz
-- tar xvf TriliumNotes-Server-v0.98.1-termux-arm64.tar.xz
-- cd TriliumNotes-Server-v0.98.1-termux-arm64
-- ./trilium.sh
-- open http://127.0.0.1:8080 in browser
+Auto check Trilium releases and publish
+
+## Use in termux
+1. pkg ins c-ares libic wget
+1. wget https://github.com/jasongwq/Trilium-termux/releases/download/v0.98.1/TriliumNotes-Server-v0.98.1-termux-arm64.tar.xz
+1. tar xvf TriliumNotes-Server-v0.98.1-termux-arm64.tar.xz
+1. cd TriliumNotes-Server-v0.98.1-termux-arm64
+1. ./trilium.sh
+1. open http://127.0.0.1:8080 in browser
